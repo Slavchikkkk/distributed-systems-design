@@ -5,7 +5,7 @@ import time
 def task5_1():
     hz = hazelcast.HazelcastClient(cluster_name="dev",cluster_members=[])
     try:
-        queue = hz.get_queue("bounded-queue")
+        queue = hz.get_queue("bounded-queue").blocking()
         for i in range(1, 101):
             queue.put(i)
             print("The message "+str(i)+" sent!")
